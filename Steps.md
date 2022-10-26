@@ -40,14 +40,14 @@ Edit project/settings.py to add postdressql database
 django_project/settings.py
 
 DATABASES = {
-  "default": {
-    "ENGINE": "django.db.backends.postgresql",
-    "NAME": "postgres",
-    "USER": "postgres",
-    "PASSWORD": "postgres",
-    "HOST": "db",
-    "PORT": 5432,
-  }
+"default": {
+"ENGINE": "django.db.backends.postgresql",
+"NAME": "postgres",
+"USER": "postgres",
+"PASSWORD": "postgres",
+"HOST": "db",
+"PORT": 5432,
+}
 }
 
 Refresh the browser to confirm that everything is running ok
@@ -86,10 +86,9 @@ admin@example.com
 testpass123
 testpass123
 
-
 Tests
 Unit Tests
-accounts/tests.py   Fill in
+accounts/tests.py Fill in
 $ docker-compose exec web python manage.py test
 
 Git
@@ -105,12 +104,12 @@ Chapter 5: Pages App
 $ docker-compose exec web python manage.py startapp pages
 
 add to settings.py
-  "pages.apps.PagesConfig", # new [INSTALLED_APPS]
+"pages.apps.PagesConfig", # new [INSTALLED_APPS]
 and
-  "DIRS": [BASE_DIR / "templates"], # new [TEMPLATES]
+"DIRS": [BASE_DIR / "templates"], # new [TEMPLATES]
 
 $ mkdir templates
-Create files templates/_base.html & home.html
+Create files templates/\_base.html & home.html
 
 URLs and Views
 
@@ -137,20 +136,20 @@ from django.contrib.auth import views
 from django.urls import path
 
 urlpatterns = [
-  path('login/', views.LoginView.as_view(), name='login'),
-  path('logout/', views.LogoutView.as_view(), name='logout'),
-  path('password_change/', views.PasswordChangeView.as_view(),
-    name='password_change'),
-  path('password_change/done/', views.PasswordChangeDoneView.as_view(),
-    name='password_change_done'),
-  path('password_reset/', views.PasswordResetView.as_view(),
-    name='password_reset'),
-  path('password_reset/done/', views.PasswordResetDoneView.as_view(),
-    name='password_reset_done'),
-  path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(),
-    name='password_reset_confirm'),
-  path('reset/done/', views.PasswordResetCompleteView.as_view(),
-    name='password_reset_complete'),
+path('login/', views.LoginView.as_view(), name='login'),
+path('logout/', views.LogoutView.as_view(), name='logout'),
+path('password_change/', views.PasswordChangeView.as_view(),
+name='password_change'),
+path('password_change/done/', views.PasswordChangeDoneView.as_view(),
+name='password_change_done'),
+path('password_reset/', views.PasswordResetView.as_view(),
+name='password_reset'),
+path('password_reset/done/', views.PasswordResetDoneView.as_view(),
+name='password_reset_done'),
+path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(),
+name='password_reset_confirm'),
+path('reset/done/', views.PasswordResetCompleteView.as_view(),
+name='password_reset_complete'),
 ]
 
 Sign Up (register)
@@ -159,3 +158,42 @@ Sign Up (register)
 • add a view called SignupPageView
 • create a signup.html template file
 • update home.html to display the sign up page
+
+============================
+
+Chapter 7: Static Assets
+Local Development
+$ mkdir static
+$ mkdir static/css
+$ mkdir static/js
+$ mkdir static/images
+
+JavaScript
+
+Production
+(.venv) $ docker-compose exec web python manage.py collectstatic
+
+STATICFILES_FINDERS !!!!!
+
+Bootstrap
+Added latest bootstrap 5.2 & css\navbar-top-fixed.css
+
+KEEP THIS SETUP FOR HOMEPAGE FOR FUTURE USE
+
+About Page
+
+Important
+Update the image:
+$ docker-compose down
+$ docker-compose up -d
+
+About Page Tests
+
+Tests
+
+Django Crispy Forms
+Add crispy to requirements.txt
+
+Update the image:
+$ docker-compose down
+$ docker-compose up -d --build

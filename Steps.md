@@ -119,3 +119,43 @@ You have to update the image.. so.....
 $ docker-compose down
 
 $ docker-compose up -d
+
+=====================================================
+
+Chapter 6: User Registration
+
+Auth URLs and Views
+To use Django’s built-in auth app we must explicitly add it to our config/urls.py file. The easiest
+approach is to use accounts/ as the prefix since that is commonly used in the Django community.
+Check modified project/url.py
+
+1. Update templates/home.html to display choices
+
+django/contrib/auth/urls.py (source code)
+
+from django.contrib.auth import views
+from django.urls import path
+
+urlpatterns = [
+  path('login/', views.LoginView.as_view(), name='login'),
+  path('logout/', views.LogoutView.as_view(), name='logout'),
+  path('password_change/', views.PasswordChangeView.as_view(),
+    name='password_change'),
+  path('password_change/done/', views.PasswordChangeDoneView.as_view(),
+    name='password_change_done'),
+  path('password_reset/', views.PasswordResetView.as_view(),
+    name='password_reset'),
+  path('password_reset/done/', views.PasswordResetDoneView.as_view(),
+    name='password_reset_done'),
+  path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(),
+    name='password_reset_confirm'),
+  path('reset/done/', views.PasswordResetCompleteView.as_view(),
+    name='password_reset_complete'),
+]
+
+Sign Up (register)
+• create an app-level accounts/urls.py file
+• update the project-level django_project/urls.py to point to the accounts app
+• add a view called SignupPageView
+• create a signup.html template file
+• update home.html to display the sign up page

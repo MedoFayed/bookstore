@@ -97,3 +97,25 @@ $ git init
 $ git status
 $ git add .
 $ git commit -m "ch4-bookstore"
+
+================================================================
+
+Chapter 5: Pages App
+
+$ docker-compose exec web python manage.py startapp pages
+
+add to settings.py
+  "pages.apps.PagesConfig", # new [INSTALLED_APPS]
+and
+  "DIRS": [BASE_DIR / "templates"], # new [TEMPLATES]
+
+$ mkdir templates
+Create files templates/_base.html & home.html
+
+URLs and Views
+
+You have to update the image.. so.....
+
+$ docker-compose down
+
+$ docker-compose up -d

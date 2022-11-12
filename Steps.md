@@ -2,7 +2,7 @@
 
 $ cd f:\#B\WSV_PRO\
 $ mkdir bookstore
-$ cd ch4-bookstore
+$ cd bookstore
 $ python -m venv .venv
 $ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 $ .venv\Scripts\Activate.ps1
@@ -197,3 +197,9 @@ Add crispy to requirements.txt
 Update the image:
 $ docker-compose down
 $ docker-compose up -d --build
+
+Git
+
+========================================
+
+Chapter 8: Advanced User Registration

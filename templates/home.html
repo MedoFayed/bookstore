@@ -4,22 +4,25 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>This is our home page.</h1>
-<img class="bookcover" src="{% static 'images/dfp.jpg' %}">
+  <h1>Home Page.</h1>
+  <img class="bookcover" src="{% static 'images/dfp.jpg' %}">
+  {% if user.is_authenticated %}
+    <h5>Hi {{user.username}}, You are logged in</h5>
+  {% else %}
+    <p>No one is logged in</p>
+  {% endif %}
 
 {% comment %}
-
-
-{% if user.is_authenticated %}
-<p>Hi {{ user.email }}!</p>
-<a href="{% url 'logout' %}">Log Out</a>
-{% else %}
-<p>You are not logged in</p>
-<p>
-  <a href="{% url 'login' %}">Log In</a> |
-  <a href="{% url 'signup' %}">Sign Up</a>
-</p>
-{% endif %}
+  {% if user.is_authenticated %}
+    <p>Hi {{ user.email }}!</p>
+    <a href="{% url 'logout' %}">Log Out</a>
+  {% else %}
+    <p>You are not logged in</p>
+    <p>
+      <a href="{% url 'login' %}">Log In</a> |
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </p>
+  {% endif %}
 {% endcomment %}
 
 {% endblock content %}
